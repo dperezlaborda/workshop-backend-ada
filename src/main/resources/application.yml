@@ -1,0 +1,33 @@
+spring:
+  profiles:
+    active: local
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+      health:
+        show-details: always
+springdoc:
+  swagger-ui:
+    disable-swagger-default-url: true
+---
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+  h2.console.enabled: true
